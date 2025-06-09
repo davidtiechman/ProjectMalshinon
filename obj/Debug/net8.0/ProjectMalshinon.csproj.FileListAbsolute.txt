@@ -78,3 +78,4 @@ C:\Users\This_user\source\repos\ProjectMalshinon\obj\Debug\net8.0\ProjectMalshin
 C:\Users\This_user\source\repos\ProjectMalshinon\obj\Debug\net8.0\ProjectMalshinon.genruntimeconfig.cache
 C:\Users\This_user\source\repos\ProjectMalshinon\obj\Debug\net8.0\ref\ProjectMalshinon.dll
 C:\Users\This_user\source\repos\projectMalshinon\obj\Debug\net8.0\projectM.0166E8CA.Up2Date
+C:\Users\This_user\source\repos\ProjectMalshinon\obj\Debug\net8.0\projectMalshinon.sourcelink.json

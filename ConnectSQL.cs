@@ -26,6 +26,7 @@ namespace ProjectMalshinon
                 this.conn.Open();
                 MySqlCommand comm = new MySqlCommand(Query, conn);
                 var result = comm.ExecuteScalar();
+
                 Console.WriteLine(result);
             }
             catch (Exception e)
@@ -34,25 +35,56 @@ namespace ProjectMalshinon
             }
             finally { this.conn.Close(); }
         }
-        public void AddedPeople(string firstname, string lastname, string secretcode)
+        public void AddedPeople(string firstname, string lastname)
         {
+            string secretcode = GetCode();
             try {
                 conn.Open();
-                this.Query = $"INSERT INTO people (firstName,lastName,secret_code) VALUES ('{firstname}','{lastname}','{secretcode}')";
-                MySqlCommand comm = new MySqlCommand(Query, conn);
-                comm.ExecuteNonQuery();
+                    this.Query = $"INSERT INTO people (firstName,lastName,secret_code,type) VALUES ('{firstname}','{lastname}','{secretcode}','reporter')";
+                    MySqlCommand comm = new MySqlCommand(Query, conn);
+                    comm.ExecuteNonQuery();        
+                
             }
             catch(Exception e) { Console.WriteLine(e.Message); }
             finally { this.conn.Close(); }
         
         }
-        public void ChackSecretC()
+        public bool ChackSecretC(string secretcode)
         {
+            bool notexists = true;
             try
             {
-
+                conn.Open();
+                this.Query = $"SELECT EXISTS (SELECT 1 FROM people WHERE secret_code = '{secretcode}');";
+                MySqlCommand comm = new MySqlCommand(Query, conn);
+                var res = comm.ExecuteScalar();
+                int re = Convert.ToInt32(res);
+                if (re == 1)
+                    notexists = false;
+                return notexists;
             }
-            catch(Exception e) { Console.WriteLine(e.Message); }
+            catch (Exception e) { Console.WriteLine(e.Message); }
+            finally { conn.Close(); }
+            return notexists;
+
+        }
+        public string GetCode()
+        {
+            string[] chars = new string[] { "1", "c", "5", "j", "9", "7", "a", "@", "3" };
+            Random random = new Random();
+            bool ifexsist = true;
+            string secretcode = "";
+            while (ifexsist)
+            {
+                secretcode = null;
+                for (int i = 0; i < 7; i++)
+                {
+                    secretcode += chars[random.Next(chars.Length)];
+                }
+                if (ChackSecretC(secretcode) == true)
+                    ifexsist = false;
+            }
+            return secretcode;
         }
     }
 }

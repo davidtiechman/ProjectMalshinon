@@ -8,7 +8,9 @@ namespace projectMalshinon
         static void Main(string[] args)
         {
             ConnectSQL conn = new ConnectSQL();
-            conn.ChackPeople("david","teichman");
+            //conn.ChackPeople("david","teichman");
+            //Console.WriteLine(conn.GetCode());
+            conn.AddedPeople("jon", "truamp");
         }
     }
 }
