@@ -46,7 +46,7 @@ namespace ProjectMalshinon
             finally { this.conn.Close(); }
         
         }
-        public void ChecSecretC()
+        public void ChackSecretC()
         {
             try
             {
