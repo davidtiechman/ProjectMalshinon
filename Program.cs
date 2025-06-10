@@ -10,7 +10,7 @@ namespace projectMalshinon
             ConnectSQL conn = new ConnectSQL();
             //conn.ChackPeople("david","teichman");
             //Console.WriteLine(conn.GetCode());
-            conn.AddedPeople("jon", "truamp");
+            conn.AddedPeople("jon", "tramp");
         }
     }
 }

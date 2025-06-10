@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\This_user\\source\\repos\\ProjectMalshinon\\projectMalshinon.csproj": {}
+    "C:\\Users\\This_user\\source\\repos\\projectMalshinon\\projectMalshinon.csproj": {}
   },
   "projects": {
-    "C:\\Users\\This_user\\source\\repos\\ProjectMalshinon\\projectMalshinon.csproj": {
+    "C:\\Users\\This_user\\source\\repos\\projectMalshinon\\projectMalshinon.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\This_user\\source\\repos\\ProjectMalshinon\\projectMalshinon.csproj",
+        "projectUniqueName": "C:\\Users\\This_user\\source\\repos\\projectMalshinon\\projectMalshinon.csproj",
         "projectName": "projectMalshinon",
-        "projectPath": "C:\\Users\\This_user\\source\\repos\\ProjectMalshinon\\projectMalshinon.csproj",
+        "projectPath": "C:\\Users\\This_user\\source\\repos\\projectMalshinon\\projectMalshinon.csproj",
         "packagesPath": "C:\\Users\\This_user\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\This_user\\source\\repos\\projectMalshinon\\obj\\",
         "projectStyle": "PackageReference",

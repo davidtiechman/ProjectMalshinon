@@ -70,7 +70,7 @@ namespace ProjectMalshinon
         }
         public string GetCode()
         {
-            string[] chars = new string[] { "1", "c", "5", "j", "9", "7", "a", "@", "3" };
+            string[] chars = new string[] { "1", "c", "5", "j", "9", "7", "a", "S","c", "3" };
             Random random = new Random();
             bool ifexsist = true;
             string secretcode = "";
