@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,46 +8,49 @@ using MySql.Data.MySqlClient;
 
 namespace ProjectMalshinon
 {
-    internal class ConnectSQL
+    internal class PeopleDAL
     {
         public string connStr = "server=localhost;username=root;password=;database=databasedesign";
-        public MySqlConnection conn;
+        public MySqlConnection connect;
+        public MySqlCommand command;
         public string Query;
-        public ConnectSQL()
+        public PeopleDAL()
         {
-           this.conn = new MySqlConnection(this.connStr);
+           this.connect = new MySqlConnection(this.connStr);
         }
-        public void ChackPeople(string firstname, string lastname)
+        public bool ChackPeople(string firstname, string lastname)
         {
+            bool exist = false;
             this.Query = $"SELECT EXISTS (SELECT 1 FROM people WHERE firstName = '{firstname}' AND lastName = '{lastname}');";
-            //this.Query = "SELECT * FROM people;";
-
-            try
-            {
-                this.conn.Open();
-                MySqlCommand comm = new MySqlCommand(Query, conn);
-                var result = comm.ExecuteScalar();
-
-                Console.WriteLine(result);
+            try {                 if (connect.State != ConnectionState.Open)
+                this.connect.Open();
+                 this.command = new MySqlCommand(Query, connect);
+                var reade = command.ExecuteScalar();
+                int result = Convert.ToInt32(reade);
+                //Console.WriteLine(result);
+                if (result == 1)
+                    exist = true;
+              
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
-            finally { this.conn.Close(); }
+            finally { this.connect.Close(); }
+            return exist;
         }
-        public void AddedPeople(string firstname, string lastname)
+        public void AddPeople(string firstname, string lastname,string type)
         {
             string secretcode = GetCode();
             try {
-                conn.Open();
-                    this.Query = $"INSERT INTO people (firstName,lastName,secret_code,type) VALUES ('{firstname}','{lastname}','{secretcode}','reporter')";
-                    MySqlCommand comm = new MySqlCommand(Query, conn);
-                    comm.ExecuteNonQuery();        
+                connect.Open();
+                    this.Query = $"INSERT INTO people (firstName,lastName,secret_code,type) VALUES ('{firstname}','{lastname}','{secretcode}','{type}')";
+                    this.command = new MySqlCommand(Query, connect);
+                    command.ExecuteNonQuery();        
                 
             }
             catch(Exception e) { Console.WriteLine(e.Message); }
-            finally { this.conn.Close(); }
+            finally { this.connect.Close(); }
         
         }
         public bool ChackSecretC(string secretcode)
@@ -54,9 +58,10 @@ namespace ProjectMalshinon
             bool notexists = true;
             try
             {
-                conn.Open();
+                if (connect.State != ConnectionState.Open)
+                    connect.Open();
                 this.Query = $"SELECT EXISTS (SELECT 1 FROM people WHERE secret_code = '{secretcode}');";
-                MySqlCommand comm = new MySqlCommand(Query, conn);
+                MySqlCommand comm = new MySqlCommand(Query, connect);
                 var res = comm.ExecuteScalar();
                 int re = Convert.ToInt32(res);
                 if (re == 1)
@@ -64,13 +69,13 @@ namespace ProjectMalshinon
                 return notexists;
             }
             catch (Exception e) { Console.WriteLine(e.Message); }
-            finally { conn.Close(); }
+            finally { connect.Close(); }
             return notexists;
 
         }
         public string GetCode()
         {
-            string[] chars = new string[] { "1", "c", "5", "j", "9", "7", "a", "S","c", "3" };
+            string[] chars = new string[] { "1", "C", "5", "8", "9", "7", "3", "S","4", "3" };
             Random random = new Random();
             bool ifexsist = true;
             string secretcode = "";
