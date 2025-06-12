@@ -137,7 +137,7 @@ The system extracts target names from text and tracks agents/threats based on re
 
 ## ✍️ יוצר המערכת | Author
 
-- Developed by: [Your Name]  
-- GitHub: [github.com/YourUsername]
+- Developed by: [David Teichman]  
+- GitHub: [github/davidtiechman/projectmalshinon]
 
 ---
