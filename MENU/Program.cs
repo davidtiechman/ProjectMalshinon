@@ -1,7 +1,7 @@
 ﻿using ProjectMalshinon;
 using MySql.Data.MySqlClient;
 
-namespace projectMalshinon
+namespace projectMalshinon.MENU
 {
     internal class Program
     {

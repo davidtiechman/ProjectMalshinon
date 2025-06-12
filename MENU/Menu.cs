@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ProjectMalshinon;
+using projectMalshinon.PEOPLE;
+using projectMalshinon.REPORTER;
 using ZstdSharp.Unsafe;
 
-namespace projectMalshinon
+namespace projectMalshinon.MENU
 {
     internal class Menu
     {
         public PeopleDAL peopleDAL = new PeopleDAL();
         public IntelReportsDAL intelreportsDAL = new IntelReportsDAL();
         private static Menu Instance;
-        private string HomePage = "Hello! " + "Please select an option" + " To enter a report, enter 1";
+        private string HomePage = "Hello!\nHere is the menu:\nTo enter a report, enter 1\nFor administrator login, enter 2\nTo exit enter 9\nPlease select an option:";
         private Menu() { }
         public static Menu instance
         {
@@ -26,14 +27,14 @@ namespace projectMalshinon
         }
         public void PrintMenu()
         {
-            Console.WriteLine(this.HomePage);
+            Console.WriteLine(HomePage);
             Option();
         }
         public void Option() {
             bool exit = false;
             while (!exit)
             {
-                Console.WriteLine("Pleas enter an option");
+                Console.WriteLine("\n\n\nPleas enter an option");
                 string option = Console.ReadLine();
                 switch (option)
                 {

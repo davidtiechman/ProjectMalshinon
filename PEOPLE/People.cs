@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projectMalshinon
+namespace projectMalshinon.PEOPLE
 {
     internal class People
     {
@@ -16,11 +16,11 @@ namespace projectMalshinon
 
         public People(int id, string firstName, string lestName, string secret_Code, string type)
         {
-            this.Id = id;
-            this.FirstName = firstName;
-            this.LestName = lestName;
-            this.SecretCode = secret_Code;
-            this.Type = type;
+            Id = id;
+            FirstName = firstName;
+            LestName = lestName;
+            SecretCode = secret_Code;
+            Type = type;
         }
     }
     

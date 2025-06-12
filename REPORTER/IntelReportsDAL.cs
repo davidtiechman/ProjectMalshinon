@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
-using ProjectMalshinon;
+using projectMalshinon.PEOPLE;
 
-namespace projectMalshinon
+namespace projectMalshinon.REPORTER
 {
     internal class IntelReportsDAL : PeopleDAL
     {
@@ -15,8 +15,8 @@ namespace projectMalshinon
         public string Id_Reporter;
         public void AddInter(string id, string text)
         {
-            this.Text = text;
-            this.Id_Reporter = id;
+            Text = text;
+            Id_Reporter = id;
 
         }
         public void AddIntelReports()
@@ -39,7 +39,7 @@ namespace projectMalshinon
                 AddPeople(fullnameTerger[0], fullnameTerger[1],"target");
             }
             int id_target = FindId(fullnameTerger);
-            this.Query = $"INSERT INTO intelreports (reporter_id,targer_id,text) VALUES ({id_reporter},{id_target},'{text}');";
+            Query = $"INSERT INTO intelreports (reporter_id,targer_id,text) VALUES ({id_reporter},{id_target},'{text}');";
             try
             {
                 connect.Open();
@@ -52,6 +52,7 @@ namespace projectMalshinon
             UpdateNumFlusOne("num_mentions", id_target);
             ChackPotentialAtent(id_reporter);
             ChackPotentialThragt(id_target);
+            Console.WriteLine("The update was successfully updated.");
         }
         public string[] FindTarget(string text)
         {
@@ -75,7 +76,7 @@ namespace projectMalshinon
         {
             string firstname = arrfullnames[0];
             string lastname = arrfullnames[1];
-            this.Query = $"SELECT Id FROM people WHERE firstName = '{firstname}' AND lastName = '{lastname}';";
+            Query = $"SELECT Id FROM people WHERE firstName = '{firstname}' AND lastName = '{lastname}';";
             int id = 0;
             try
             {
@@ -94,7 +95,7 @@ namespace projectMalshinon
         }
         public void UpdateNumFlusOne(string type_id, int id)
         {
-            this.Query = $"UPDATE people SET {type_id} = {type_id} +1 WHERE Id = {id} ";
+            Query = $"UPDATE people SET {type_id} = {type_id} +1 WHERE Id = {id} ";
             try
             {
                 if (connect.State != ConnectionState.Open)
@@ -108,7 +109,7 @@ namespace projectMalshinon
         public int GetColumn(int id, string column)
         {
             int num = 0;
-            this.Query = $"SELECT {column} FROM people WHERE Id = {id};";
+            Query = $"SELECT {column} FROM people WHERE Id = {id};";
             try
             {
                 if (connect.State != ConnectionState.Open)
