@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projectMalshinon
+namespace projectMalshinon.REPORTER
 {
     
         internal class IntelReports
@@ -18,7 +18,7 @@ namespace projectMalshinon
             {
                 this.reporter_id = reporter_id;
                 this.target_id = target_id;
-                this.Text = text;
+                Text = text;
                 this.timestamp = timestamp;
             }
         }
